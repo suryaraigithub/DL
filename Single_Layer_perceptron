@@ -1,87 +1,23 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "authorship_tag": "ABX9TyNLOvH2g4JTRhi9aZPGIyu8",
-      "include_colab_link": true
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/suryaraigithub/DL/blob/main/Single_Layer_perceptron\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": 3,
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "8owDVv1Jl_s7",
-        "outputId": "4a91c1ce-01b0-4dc1-fcf9-ac67a06f65ec"
-      },
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "[[100   0]\n",
-            " [  0  50]]\n"
-          ]
-        },
-        {
-          "output_type": "stream",
-          "name": "stderr",
-          "text": [
-            "<ipython-input-3-8e20fb81ce83>:7: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.\n",
-            "Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations\n",
-            "  y=(iris['target']== 0).astype(np.int) #setosa or not setosa\n"
-          ]
-        }
-      ],
-      "source": [
-        "import numpy as np\n",
-        "from sklearn.datasets import load_iris\n",
-        "iris= load_iris()\n",
-        "\n",
-        "X= iris['data'][:,-2:] # petal length, petal width\n",
-        "\n",
-        "y=(iris['target']== 0).astype(np.int) #setosa or not setosa\n",
-        "\n",
-        "from sklearn.linear_model import SGDClassifier\n",
-        "\n",
-        "sgd_clf = SGDClassifier(penalty=None, eta0=1, learning_rate='constant', loss='perceptron') #it is equal single layer perceptron model\n",
-        "\n",
-        "from sklearn.linear_model import Perceptron\n",
-        "\n",
-        "model= Perceptron()\n",
-        "\n",
-        "model.fit(X,y)\n",
-        "\n",
-        "y_hat=model.predict(X)\n",
-        "\n",
-        "from sklearn.metrics import confusion_matrix\n",
-        "\n",
-        "print(confusion_matrix(y,y_hat))\n",
-        "\n",
-        "\n"
-      ]
-    }
-  ]
-}
+import numpy as np
+from sklearn.datasets import load_iris
+iris= load_iris()
+
+X= iris['data'][:,-2:] # petal length, petal width
+
+y=(iris['target']== 0).astype(np.int) #setosa or not setosa
+
+from sklearn.linear_model import SGDClassifier
+
+sgd_clf = SGDClassifier(penalty=None, eta0=1, learning_rate='constant', loss='perceptron') #it is equal single layer perceptron model
+
+from sklearn.linear_model import Perceptron
+
+model= Perceptron()
+
+model.fit(X,y)
+
+y_hat=model.predict(X)
+
+from sklearn.metrics import confusion_matrix
+
+print(confusion_matrix(y,y_hat))
